@@ -16,6 +16,7 @@
  */
 package org.apache.commons.dbutils;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.InputStream;
 import java.io.Reader;
 import java.math.BigDecimal;
@@ -62,6 +63,7 @@ public abstract class BaseResultSetHandler<T> implements ResultSetHandler<T> {
      * {@inheritDoc}
      */
     @Override
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public final T handle(final ResultSet rs) throws SQLException {
         if (this.rs != null) {
             throw new IllegalStateException("Re-entry not allowed!");

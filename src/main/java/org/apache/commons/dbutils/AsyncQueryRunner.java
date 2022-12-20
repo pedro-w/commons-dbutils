@@ -16,6 +16,7 @@
  */
 package org.apache.commons.dbutils;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -45,6 +46,7 @@ public class AsyncQueryRunner extends AbstractQueryRunner {
      * @param queryRunner the {@code QueryRunner} instance to use for the queries.
      * @since 1.5
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public AsyncQueryRunner(final ExecutorService executorService, final QueryRunner queryRunner) {
         this.executorService = executorService;
         this.queryRunner = queryRunner;
@@ -56,7 +58,7 @@ public class AsyncQueryRunner extends AbstractQueryRunner {
      * @param executorService the {@code ExecutorService} instance used to run JDBC invocations concurrently.
      */
     public AsyncQueryRunner(final ExecutorService executorService) {
-        this(null, false, executorService);
+        this(executorService, new QueryRunner(null, false));
     }
 
     /**
@@ -101,6 +103,7 @@ public class AsyncQueryRunner extends AbstractQueryRunner {
      * @param executorService the {@code ExecutorService} instance used to run JDBC invocations concurrently.
      */
     @Deprecated
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public AsyncQueryRunner(final DataSource ds, final boolean pmdKnownBroken, final ExecutorService executorService) {
         super(ds, pmdKnownBroken);
         this.executorService = executorService;
@@ -129,6 +132,7 @@ public class AsyncQueryRunner extends AbstractQueryRunner {
          * @param closeConn True if the connection should be closed, false otherwise.
          * @param ps The {@link PreparedStatement} to be executed.
          */
+        @SuppressFBWarnings("EI_EXPOSE_REP2")
         public BatchCallableStatement(final String sql, final Object[][] params, final Connection conn, final boolean closeConn, final PreparedStatement ps) {
             this.sql = sql;
             this.params = params.clone();
@@ -231,6 +235,7 @@ public class AsyncQueryRunner extends AbstractQueryRunner {
          * @param params An array of query replacement parameters.  Each row in
          *        this array is one set of batch replacement values.
          */
+        @SuppressFBWarnings("EI_EXPOSE_REP2")
         public QueryCallableStatement(final Connection conn, final boolean closeConn, final PreparedStatement ps,
                 final ResultSetHandler<T> rsh, final String sql, final Object... params) {
             this.sql = sql;
@@ -387,6 +392,7 @@ public class AsyncQueryRunner extends AbstractQueryRunner {
          * @param params An array of query replacement parameters.  Each row in
          *        this array is one set of batch replacement values.
          */
+        @SuppressFBWarnings("EI_EXPOSE_REP2")
         public UpdateCallableStatement(final Connection conn, final boolean closeConn, final PreparedStatement ps, final String sql, final Object... params) {
             this.sql = sql;
             this.params = params;

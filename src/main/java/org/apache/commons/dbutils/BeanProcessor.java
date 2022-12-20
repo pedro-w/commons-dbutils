@@ -114,7 +114,7 @@ public class BeanProcessor {
         if (columnToPropertyOverrides == null) {
             throw new IllegalArgumentException("columnToPropertyOverrides map cannot be null");
         }
-        this.columnToPropertyOverrides = columnToPropertyOverrides;
+        this.columnToPropertyOverrides = new HashMap<>(columnToPropertyOverrides);
     }
 
     /**

@@ -16,6 +16,7 @@
  */
 package org.apache.commons.dbutils;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Iterator;
@@ -59,6 +60,7 @@ public class ResultSetIterator implements Iterator<Object[]> {
      * {@code Object[]}.  Defaults to a
      * {@code BasicRowProcessor}.
      */
+     @SuppressFBWarnings("EI_EXPOSE_REP2")
     public ResultSetIterator(final ResultSet rs, final RowProcessor convert) {
         this.rs = rs;
         this.convert = convert;

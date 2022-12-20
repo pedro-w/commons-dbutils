@@ -16,6 +16,7 @@
  */
 package org.apache.commons.dbutils;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -82,6 +83,7 @@ public class BasicRowProcessor implements RowProcessor {
      * bean properties.
      * @since 1.1
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public BasicRowProcessor(final BeanProcessor convert) {
         this.convert = convert;
     }

@@ -16,6 +16,7 @@
  */
 package org.apache.commons.dbutils.wrappers;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.sql.ResultSet;
@@ -74,6 +75,7 @@ public class StringTrimmedResultSet implements InvocationHandler {
      * to wrap the specified {@code ResultSet}.
      * @param rs ResultSet to wrap
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public StringTrimmedResultSet(final ResultSet rs) {
         this.rs = rs;
     }

@@ -16,6 +16,7 @@
  */
 package org.apache.commons.dbutils;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
@@ -62,8 +63,7 @@ public abstract class AbstractQueryRunner {
      * Default constructor, sets pmdKnownBroken to false, ds to null and stmtConfig to null.
      */
     public AbstractQueryRunner() {
-        ds = null;
-        this.stmtConfig = null;
+        this(null, false, null);
     }
 
     /**
@@ -77,9 +77,7 @@ public abstract class AbstractQueryRunner {
      *            not to use it again.
      */
     public AbstractQueryRunner(final boolean pmdKnownBroken) {
-        this.pmdKnownBroken = pmdKnownBroken;
-        ds = null;
-        this.stmtConfig = null;
+        this(null, pmdKnownBroken, null);
     }
 
     /**
@@ -91,8 +89,7 @@ public abstract class AbstractQueryRunner {
      *            The {@code DataSource} to retrieve connections from.
      */
     public AbstractQueryRunner(final DataSource ds) {
-        this.ds = ds;
-        this.stmtConfig = null;
+        this(ds, false, null);
     }
 
     /**
@@ -111,9 +108,7 @@ public abstract class AbstractQueryRunner {
      *            not to use it again.
      */
     public AbstractQueryRunner(final DataSource ds, final boolean pmdKnownBroken) {
-        this.pmdKnownBroken = pmdKnownBroken;
-        this.ds = ds;
-        this.stmtConfig = null;
+        this(ds, pmdKnownBroken, null);
     }
 
     /**
@@ -127,6 +122,7 @@ public abstract class AbstractQueryRunner {
      * and if it breaks, we'll remember not to use it again.
      * @param stmtConfig The configuration to apply to statements when they are prepared.
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public AbstractQueryRunner(final DataSource ds, final boolean pmdKnownBroken, final StatementConfiguration stmtConfig) {
         this.pmdKnownBroken = pmdKnownBroken;
         this.ds = ds;
@@ -142,6 +138,7 @@ public abstract class AbstractQueryRunner {
      * @param ds The {@code DataSource} to retrieve connections from.
      * @param stmtConfig The configuration to apply to statements when they are prepared.
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public AbstractQueryRunner(final DataSource ds, final StatementConfiguration stmtConfig) {
         this.ds = ds;
         this.stmtConfig = stmtConfig;
@@ -429,6 +426,7 @@ public abstract class AbstractQueryRunner {
      *
      * @return DataSource the runner is using
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     public DataSource getDataSource() {
         return this.ds;
     }

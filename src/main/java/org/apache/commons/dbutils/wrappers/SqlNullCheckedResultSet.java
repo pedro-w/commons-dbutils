@@ -16,6 +16,7 @@
  */
 package org.apache.commons.dbutils.wrappers;
 
+import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.io.InputStream;
 import java.io.Reader;
 import java.lang.reflect.InvocationHandler;
@@ -146,6 +147,7 @@ public class SqlNullCheckedResultSet implements InvocationHandler {
      * to wrap the specified {@code ResultSet}.
      * @param rs ResultSet to wrap
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public SqlNullCheckedResultSet(final ResultSet rs) {
         this.rs = rs;
     }
@@ -186,6 +188,7 @@ public class SqlNullCheckedResultSet implements InvocationHandler {
      *
      * @return the value
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     public Blob getNullBlob() {
         return this.nullBlob;
     }
@@ -239,6 +242,7 @@ public class SqlNullCheckedResultSet implements InvocationHandler {
      *
      * @return the value
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     public Clob getNullClob() {
         return this.nullClob;
     }
@@ -309,6 +313,7 @@ public class SqlNullCheckedResultSet implements InvocationHandler {
      *
      * @return the value
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     public Ref getNullRef() {
         return this.nullRef;
     }
@@ -432,6 +437,7 @@ public class SqlNullCheckedResultSet implements InvocationHandler {
      *
      * @param nullBlob the value
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP")
     public void setNullBlob(final Blob nullBlob) {
         this.nullBlob = nullBlob;
     }
@@ -486,6 +492,7 @@ public class SqlNullCheckedResultSet implements InvocationHandler {
      *
      * @param nullClob the value
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public void setNullClob(final Clob nullClob) {
         this.nullClob = nullClob;
     }
@@ -556,6 +563,7 @@ public class SqlNullCheckedResultSet implements InvocationHandler {
      *
      * @param nullRef the value
      */
+    @SuppressFBWarnings("EI_EXPOSE_REP2")
     public void setNullRef(final Ref nullRef) {
         this.nullRef = nullRef;
     }
